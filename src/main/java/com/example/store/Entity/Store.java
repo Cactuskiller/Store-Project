@@ -2,6 +2,7 @@ package com.example.store.Entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "store")
+@Table(name = "Store")
 public class Store {
 
   @Id
@@ -21,11 +22,11 @@ public class Store {
   @Column(name = "Name")
   String name;
 
-  @OneToMany(mappedBy = "store")
+  @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
   private List<Products> products;
 
-  @OneToMany(mappedBy = "store")
-  private List<Customers> customars;
+  @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+  private List<Customers> customers;
 
   public Long getId() {
     return id;
@@ -51,12 +52,12 @@ public class Store {
     this.products = products;
   }
 
-  public List<Customers> getCustomars() {
-    return customars;
+  public List<Customers> getCustomers() {
+    return customers;
   }
 
-  public void setCustomars(List<Customers> customars) {
-    this.customars = customars;
+  public void setCustomars(List<Customers> customers) {
+    this.customers = customers;
   }
 
 }

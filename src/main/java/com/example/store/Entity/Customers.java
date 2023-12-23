@@ -2,6 +2,7 @@ package com.example.store.Entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,51 +17,50 @@ import jakarta.persistence.Table;
 @Table(name = "customers")
 public class Customers {
 
-  
- @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- Long id;
-  
- @Column(name = "Name")
- String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id;
 
- @ManyToOne
- @JoinColumn(name = "store_id")
+  @Column(name = "Name")
+  String name;
+
+  @ManyToOne
+  @JoinColumn(name = "store_id")
   Store store;
-  
- @ManyToMany(mappedBy = "customers")
- private List<Products> products;
 
-public Long getId() {
-  return id;
-}
+  @ManyToMany(mappedBy = "customers", cascade = CascadeType.ALL)
+  private List<Products> products;
 
-public void setId(Long id) {
-  this.id = id;
-}
+  public Long getId() {
+    return id;
+  }
 
-public String getName() {
-  return name;
-}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-public void setName(String name) {
-  this.name = name;
-}
+  public String getName() {
+    return name;
+  }
 
-public Store getStore() {
-  return store;
-}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-public void setStore(Store store) {
-  this.store = store;
-}
+  public Store getStore() {
+    return store;
+  }
 
-public List<Products> getProducts() {
-  return products;
-}
+  public void setStore(Store store) {
+    this.store = store;
+  }
 
-public void setProducts(List<Products> products) {
-  this.products = products;
-}
+  public List<Products> getProducts() {
+    return products;
+  }
+
+  public void setProducts(List<Products> products) {
+    this.products = products;
+  }
 
 }
