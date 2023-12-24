@@ -38,9 +38,8 @@ public class CustomersController {
 
   // Create a new customer
   @PostMapping
-  public ResponseEntity<Customers> createCustomer(@RequestBody Customers customer) {
-    Customers savedCustomer = custRep.save(customer);
-    return ResponseEntity.ok(savedCustomer);
+  public Customers createCustomer(@RequestBody Customers customer) {
+    return custRep.save(customer);
   }
 
   // delete a customer
@@ -52,7 +51,7 @@ public class CustomersController {
     } else {
       return ResponseEntity.notFound().build();
     }
-}
+  }
 
   @GetMapping("/store/{storeId}")
   public List<Customers> getCustomersByStoreId(@PathVariable Long storeId) {

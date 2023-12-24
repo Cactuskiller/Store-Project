@@ -1,20 +1,18 @@
 package com.example.store.Entity;
-
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-//@Table(name = "customers")
+@Table(name = "customers")
 public class Customers {
 
   @Id
@@ -28,8 +26,10 @@ public class Customers {
   @JoinColumn(name = "store_id")
   private Store store;
 
-  // @ManyToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-  // private List<Products> products;
+  @OneToMany(mappedBy = "customers")
+  List<ProductCustomer> pc;
+
+
 
   public Long getId() {
     return id;
@@ -54,13 +54,5 @@ public class Customers {
   public void setStore(Store store) {
     this.store = store;
   }
-
-  // public List<Products> getProducts() {
-  //   return products;
-  // }
-
-  // public void setProducts(List<Products> products) {
-  //   this.products = products;
-  // }
 
 }

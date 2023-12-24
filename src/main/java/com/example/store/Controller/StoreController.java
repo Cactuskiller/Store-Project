@@ -35,9 +35,8 @@ public class StoreController {
   }
 
   @PostMapping
-  public ResponseEntity<Store> createStore(@RequestBody Store store) {
-    Store savedStore = strRep.save(store);
-    return ResponseEntity.ok(savedStore);
+  public Store createStore(@RequestBody Store store) {
+    return strRep.save(store);
   }
 
   @DeleteMapping("{id}")
