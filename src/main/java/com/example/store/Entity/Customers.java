@@ -14,7 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "customers")
+//@Table(name = "customers")
 public class Customers {
 
   @Id
@@ -26,10 +26,10 @@ public class Customers {
 
   @ManyToOne
   @JoinColumn(name = "store_id")
-  Store store;
+  private Store store;
 
-  @ManyToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-  private List<Products> products;
+  // @ManyToMany(mappedBy = "customers", cascade = CascadeType.ALL)
+  // private List<Products> products;
 
   public Long getId() {
     return id;
@@ -55,12 +55,12 @@ public class Customers {
     this.store = store;
   }
 
-  public List<Products> getProducts() {
-    return products;
-  }
+  // public List<Products> getProducts() {
+  //   return products;
+  // }
 
-  public void setProducts(List<Products> products) {
-    this.products = products;
-  }
+  // public void setProducts(List<Products> products) {
+  //   this.products = products;
+  // }
 
 }

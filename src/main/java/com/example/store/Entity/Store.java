@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Store")
+// @Table(name = "Store")
 public class Store {
 
   @Id
@@ -22,10 +22,10 @@ public class Store {
   @Column(name = "Name")
   String name;
 
-  @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "store")
   private List<Products> products;
 
-  @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "store")
   private List<Customers> customers;
 
   public Long getId() {
@@ -56,7 +56,7 @@ public class Store {
     return customers;
   }
 
-  public void setCustomars(List<Customers> customers) {
+  public void setCustomers(List<Customers> customers) {
     this.customers = customers;
   }
 

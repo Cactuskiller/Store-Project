@@ -27,7 +27,8 @@ public class CustomersController {
   }
 
   // understand this code later
-  @GetMapping("{id}")
+  // Find a customer by id
+  @GetMapping("/find/{id}")
   public ResponseEntity<Customers> getCustomersById(@PathVariable Long custId) {
     Optional<Customers> customers = custRep.findById(custId);
     return customers.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -43,7 +44,7 @@ public class CustomersController {
   }
 
   // delete a customer
-  @DeleteMapping("{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deleteCustomer(@PathVariable Long custId) {
     if (custRep.existsById(custId)) {
       custRep.deleteById(custId);
@@ -51,9 +52,9 @@ public class CustomersController {
     } else {
       return ResponseEntity.notFound().build();
     }
-  }
+}
 
-  @GetMapping("Store/{storeId}")
+  @GetMapping("/store/{storeId}")
   public List<Customers> getCustomersByStoreId(@PathVariable Long storeId) {
     return custRep.findByStoreId(storeId);
   }
