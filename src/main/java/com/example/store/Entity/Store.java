@@ -2,6 +2,8 @@ package com.example.store.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,9 +25,11 @@ public class Store {
   String name;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "store")
+  @JsonManagedReference
   private List<Products> products;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "store")
+  @JsonManagedReference
   private List<Customers> customers;
 
   public Long getId() {

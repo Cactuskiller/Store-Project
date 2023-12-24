@@ -34,12 +34,12 @@ public class StoreController {
     return stroeOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
-  @PostMapping
+  @PostMapping("/add")
   public Store createStore(@RequestBody Store store) {
     return strRep.save(store);
   }
 
-  @DeleteMapping("{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deleteStore(@PathVariable Long id) {
     if (strRep.existsById(id)) {
       strRep.deleteById(id);

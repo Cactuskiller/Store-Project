@@ -2,6 +2,8 @@ package com.example.store.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Products {
 
   @ManyToOne
   @JoinColumn(name = "store_id")
+  @JsonBackReference
   private Store store;
 
   @OneToMany(mappedBy = "products")

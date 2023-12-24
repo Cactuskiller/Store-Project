@@ -29,25 +29,25 @@ public class CustomersController {
   // understand this code later
   // Find a customer by id
   @GetMapping("/find/{id}")
-  public ResponseEntity<Customers> getCustomersById(@PathVariable Long custId) {
-    Optional<Customers> customers = custRep.findById(custId);
+  public ResponseEntity<Customers> getCustomersById(@PathVariable Long id) {
+    Optional<Customers> customers = custRep.findById(id);
     return customers.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
   // in the follwoing the CRUD opperations
 
   // Create a new customer
-  @PostMapping
+  @PostMapping("/add")
   public Customers createCustomer(@RequestBody Customers customer) {
     return custRep.save(customer);
   }
 
   // delete a customer
   @DeleteMapping("/delete/{id}")
-  public ResponseEntity<Void> deleteCustomer(@PathVariable Long custId) {
-    if (custRep.existsById(custId)) {
-      custRep.deleteById(custId);
-      return ResponseEntity.noContent().build();
+  public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+    if (custRep.existsById(id)) {
+      custRep.deleteById(id);
+      return ResponseEntity.ok().build();
     } else {
       return ResponseEntity.notFound().build();
     }

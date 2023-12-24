@@ -1,5 +1,8 @@
 package com.example.store.Entity;
+
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,12 +27,11 @@ public class Customers {
 
   @ManyToOne
   @JoinColumn(name = "store_id")
+  @JsonBackReference
   private Store store;
 
   @OneToMany(mappedBy = "customers")
   List<ProductCustomer> pc;
-
-
 
   public Long getId() {
     return id;
