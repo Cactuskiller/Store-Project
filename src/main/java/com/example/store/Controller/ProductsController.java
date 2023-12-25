@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.store.Entity.Products;
 import com.example.store.Repostiory.ProductsRepository;
 
@@ -26,6 +25,18 @@ public class ProductsController {
   @GetMapping
   public List<Products> getAllProducts() {
     return proRep.findAll();
+  }
+
+  @GetMapping("/showProducts")
+  public String getCustomers() {
+    String results = "";
+
+    for (Products p : proRep.findAll()) {
+      results += "Product id: " + p.getId() + " " + "Product name: " + p.getName() + " " + "Product price: "
+          + p.getPrice() + "<br>";
+      results += "<br>";
+    }
+    return results;
   }
 
   // Get product by ID

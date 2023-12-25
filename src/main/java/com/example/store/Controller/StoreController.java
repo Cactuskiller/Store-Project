@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.store.Entity.Customers;
+import com.example.store.Entity.Products;
 import com.example.store.Entity.Store;
 import com.example.store.Repostiory.StoreRepository;
 
@@ -26,6 +28,26 @@ public class StoreController {
   @GetMapping
   public List<Store> getALLStores() {
     return strRep.findAll();
+  }
+
+  // for each to get all the stores , customers and products
+  @GetMapping("/showS")
+  public String getStores() {
+
+    String results = "";
+
+    for (Store s : strRep.findAll()) {
+      results += "Store id: " + s.getId() + " " + "Store name: " + s.getName() + "<br>";
+      for (Customers c : s.getCustomers()) {
+        results += "Customer id: " + c.getId() + " " + "Customer name: " + c.getName() + "<br>";
+        for (Products p : s.getProducts()) {
+          results += "Product id: " + p.getId() + " " + "Product name: " + p.getName() + " " + "Product price: "
+              + p.getPrice() + "<br>";
+        }
+      }
+      results += "<br>";
+    }
+    return results;
   }
 
   @GetMapping("{id}")

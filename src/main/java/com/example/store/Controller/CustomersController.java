@@ -28,12 +28,22 @@ public class CustomersController {
 
   // understand this code later
   // Find a customer by id
-  @GetMapping("/find/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<Customers> getCustomersById(@PathVariable Long id) {
     Optional<Customers> customers = custRep.findById(id);
     return customers.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
+  @GetMapping("/showCustomer")
+  public String getCustomers() {
+    String results = "";
+
+    for (Customers c : custRep.findAll()) {
+      results += "Customer id: " + c.getId() + " " + "Customer name: " + c.getName() + "<br>";
+      results += "<br>";
+    }
+    return results;
+  }
   // in the follwoing the CRUD opperations
 
   // Create a new customer
