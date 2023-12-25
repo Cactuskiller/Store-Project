@@ -34,9 +34,6 @@ public class Products {
   @OneToMany(mappedBy = "products")
   List<ProductCustomer> pc;
 
-  // @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
-  // private List<Customers> customers;
-
   public Long getId() {
     return id;
   }
@@ -69,4 +66,11 @@ public class Products {
     this.store = store;
   }
 
+  public List<ProductCustomer> getPc() {
+    return pc;
+  }
+
+  public void setPc(List<ProductCustomer> pc) {
+    this.pc = pc;
+  }
 }

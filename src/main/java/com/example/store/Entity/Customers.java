@@ -57,4 +57,11 @@ public class Customers {
     this.store = store;
   }
 
+  public List<ProductCustomer> getPc() {
+    return pc;
+  }
+
+  public void setPc(List<ProductCustomer> pc) {
+    this.pc = pc;
+  }
 }

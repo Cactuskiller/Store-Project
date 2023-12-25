@@ -32,6 +32,7 @@ public class Store {
   @JsonManagedReference
   private List<Customers> customers;
 
+  // getters and setters for id,name and the lists
   public Long getId() {
     return id;
   }
