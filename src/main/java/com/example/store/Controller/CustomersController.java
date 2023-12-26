@@ -26,14 +26,14 @@ public class CustomersController {
     return custRep.findAll();
   }
 
-  // understand this code later
+ 
   // Find a customer by id
   @GetMapping("/{id}")
   public ResponseEntity<Customers> getCustomersById(@PathVariable Long id) {
     Optional<Customers> customers = custRep.findById(id);
     return customers.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
-
+  //display all customers
   @GetMapping("/showCustomer")
   public String getCustomers() {
     String results = "";

@@ -20,7 +20,7 @@ public class ProductCustomer {
   @ManyToOne
   @JoinColumn(name = "customer_id")
   Customers customers;
-
+ //getters and setters for id and both the customers and the products objects
   public Long getId() {
     return id;
   }
